@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>2021-04-27_Chrome_앱_만들기</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+
+  <body>
+    <span class="js-weather"></span>
+    <div class="js-clock">
+      <h1>00:00</h1>
+    </div>
+    <form class="js-form form">
+      <input type="text" id="inputName" placeholder="What is your name?">
+    </form>
+    <div>
+      <h4 class="js-name"></h4>
+    </div>
+      <h1 id="tasks">Tasks</h1>
+    <form id="js-form">
+      <input type="text" id="inputTasks"placeholder="Write task" />
+    </form>
+      <div>
+        <h3 id="pendingList">[ Pending LIST ]</h3>
+        <ul id="js-pending"></ul>
+      </div>
+      <div>
+        <h3 id="finishedList">[ Finished LIST ]</h3>
+        <ul id="js-finished"></ul>
+      </div>
+    <script src="src/clock.js"></script>
+    <script src="src/name.js"></script>
+    <script src="src/todo.js"></script>
+    <script src="src/bg.js"></script>
+    <script src="src/weather.js"></script>
+  </body>
+</html>
