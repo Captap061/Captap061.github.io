@@ -16,7 +16,7 @@ function getTaskObject(text) {
     };
 }
 
- function savePendingTask(task) { 
+function savePendingTask(task) { 
     pendingTasks.push(task); 
 } 
 
@@ -24,10 +24,10 @@ function findInFinished(taskId) {
     return finishedTasks.find(function(task) { 
         return task.id === taskId;
     });
- }
+}
 
- function findInPending(taskId) { 
-     return pendingTasks.find(function(task) { 
+function findInPending(taskId) { 
+    return pendingTasks.find(function(task) { 
         return task.id === taskId; 
     }); 
 } 
@@ -51,8 +51,8 @@ function addToFinished(task) {
 function addToPending(task) { 
     pendingTasks.push(task);
 } 
- 
- function deleteTask(e) { 
+
+function deleteTask(e) { 
     const li = e.target.parentNode; 
     li.parentNode.removeChild(li); 
     removeFromFinished(li.id); 
@@ -64,8 +64,8 @@ function handleFinishClick(e) {
     const li = e.target.parentNode; 
     li.parentNode.removeChild(li); 
     const task = findInPending(li.id); 
-    removeFromPending(li.id);
     addToFinished(task); 
+    removeFromPending(li.id);
     paintFinishedTask(task); 
     saveState(); 
 } 
@@ -80,23 +80,28 @@ function handleBackClick(e) {
     saveState(); 
 } 
 
-function buildGenericLi(task) { 
-    const li = document.createElement("li"); 
-    const span = document.createElement("span"); 
-    const deleteBtn = document.createElement("button"); 
-    span.innerText = task.text; deleteBtn.innerText = "❌"; 
-    deleteBtn.addEventListener("click", deleteTask); 
-    li.append(span, deleteBtn); li.id = task.id; return li; 
-} 
-
 function paintPendingTask(task) { 
     const genericLi = buildGenericLi(task); 
+    const span = document.createElement("span"); 
     const completeBtn = document.createElement("button"); 
+    span.innerText = task.text; 
     completeBtn.innerText = "✅"; 
     completeBtn.addEventListener("click", handleFinishClick); 
     genericLi.append(completeBtn); 
     pendingList.append(genericLi); 
 }
+
+function buildGenericLi(task) { 
+    const li = document.createElement("li"); 
+    const span = document.createElement("span"); 
+    const deleteBtn = document.createElement("button"); 
+    span.innerText = task.text; 
+    deleteBtn.innerText = "❌"; 
+    deleteBtn.addEventListener("click", deleteTask); 
+    li.append(span, deleteBtn);
+    li.id = task.id;
+    return li; 
+} 
 
 function paintFinishedTask(task) { 
     const genericLi = buildGenericLi(task); 
@@ -125,7 +130,8 @@ function handleFormSubmit(e) {
     const taskObj = getTaskObject(input.value); 
     input.value = ""; 
     paintPendingTask(taskObj); 
-    savePendingTask(taskObj); saveState(); 
+    savePendingTask(taskObj); 
+    saveState(); 
 } 
 
 function init() {

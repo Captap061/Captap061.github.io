@@ -17,7 +17,7 @@ function handleSubmit(event) {
 
 function askForName() {
     jsform.classList.add(SHOWING_ON);
-   jsform.addEventListener("submit", handleSubmit);
+    jsform.addEventListener("submit", handleSubmit);
 }
 
 function paintname(text) {
